@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    
+    <h2>LOGIN</h2>
+    <form method="POST" class="card p-3 w-50 border-secondary">
+        {% csrf_token %}
+        <div class="form_group m-3">
+            <label>Username</label>
+            <input required type="text" name="username" class="form-control">
+        </div>
+        <div class="form_group m-3">
+            <label>Password</label>
+            <input required type="password" name="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary m-3 p-2">Login</button>
+        <button type="reset" class="btn btn-primary m-3 p-2">Reset</button>
+        <div class="m-2 text-center"><strong>
+            <a href="{% url 'register' %}">Not a Member...Sign up</a></strong>
+        </div>
+        <div class="m-2 text-center"><strong>
+            <a href="{% url 'password_reset' %}">Forgot Password</a></strong>
+        </div>
+    </form>
+		
+</div>
+{% endblock %}
+    

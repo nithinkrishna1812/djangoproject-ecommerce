@@ -1,0 +1,303 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>App Name</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'css/styles.min.css' %}" rel="stylesheet">
+
+  
+  {% block styles %} {% endblock %}    
+
+  <script type="text/javascript">
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken')
+
+    function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		  var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		  for(var i = 0; i < cookieArr.length; i++) {
+		      var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		      if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		          return decodeURIComponent(cookiePair[1]);
+		      }
+		  }
+
+		    // Return null if not found
+		  return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+
+  </script>    
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-text mx-3">App Name</div>
+      </a>
+
+      <hr class="sidebar-divider my-0">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'fruits' %}">
+          <i class="fas fa-home"></i>
+          <span>Fruits</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'vegetables' %}">
+          <i class="fas fa-home"></i>
+          <span>Vegetables</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'homemade_products' %}">
+          <i class="fas fa-home"></i>
+          <span>Homemade Products</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'natural_products' %}">
+          <i class="fas fa-home"></i>
+          <span>Natural Products</span>
+        </a>
+      </li>
+      
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about_page' %}">
+          <i class="fas fa-info"></i>
+          <span>About</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Cart -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link" href="{% url 'cart' %}" role="button">
+                <i class="fas fa-shopping-cart fa-fw"></i> 
+                <p class="bg-gradient-primary rounded-circle p-1">{{cartItems}}</p>               
+              </a>
+              
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{% if request.user.is_authenticated %}{{request.user}}{% else %}Guest{% endif %}</span>
+                <img class="img-profile rounded-circle" src="{% static 'images/profile-image.png' %}">
+              </a>
+              <!-- Dropdown - User Information -->
+              {% if request.user.is_authenticated %}
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'my_orders_page' %}">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  My Orders
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+              {% else %}
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'login' %}">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Login
+                </a>
+              </div>
+              {% endif %}
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+        <div class="container-fluid">
+          {% block content %} {% endblock %}
+        </div>
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/scripts.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>Registration-form</h2>
+    <form method="POST" class="card p-3 w-50 border-secondary">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form_group ml-2 mr-2 my-1">
+            {{ field.errors }}
+            <label>{{ field.label_tag }}</label>
+            <p>{{ field }}</p>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary m-2 p-2">Register</button>
+        <button type="reset" class="btn btn-primary m-2 p-2">Reset</button>
+        <div class="m-2 text-center"><strong>
+            <a href="{% url 'login' %}">Already a Member</a></strong>
+        </div>
+    </form>
+    
+</div>
+{% endblock %}
+    
+    

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>My Orders</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Product</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Total</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Date Order</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Status</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"></div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>                
+                    {% for item in items %}
+                    <tr>
+                        <th scope="row" class="border-0">
+                            <div class="p-2">
+                                <img src="{{item.product.imageURL}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{item.product.title}}</a>
+                                </div>
+                            </div>
+                        </th>
+                        <td class="border-0 align-middle"><strong>{{item.quantity}}</strong></td>
+                        <td class="border-0 align-middle"><strong>&#x20B9;{{item.get_total|floatformat:2}}</strong></td>
+                        <td class="border-0 align-middle"><strong>{{item.order.date_odered}}</strong></td>
+                        <td class="border-0 align-middle"><strong>{{item.order.status}}</strong></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' item.order.id %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+    
