@@ -27,7 +27,6 @@ Django==3.1
 django-bootstrap4==2.2.0
 docutils==0.16
 et-xmlfile==1.0.1
-face-recognition-models==0.3.0
 filelock==3.0.12
 Flask==1.1.1
 gast==0.2.2
@@ -102,9 +101,6 @@ six==1.14.0
 sklearn==0.0
 soupsieve==2.0
 sqlparse==0.3.1
-tensorboard==2.1.0
-tensorflow==2.1.0
-tensorflow-estimator==2.1.0
 termcolor==1.1.0
 tflearn==0.3.2
 toml==0.10.0
