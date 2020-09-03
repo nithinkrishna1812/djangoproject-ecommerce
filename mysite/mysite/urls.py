@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('', home_page, name='home'),
+    path('/', home_page, name='home'),
     path('cart/', cart_page, name='cart'),
     path('vegetable/', vegetable_page, name='vegetables'),
     path('fruits/', fruits_page, name='fruits'),
