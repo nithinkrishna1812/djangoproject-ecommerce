@@ -82,7 +82,6 @@ pylint==2.4.4
 PyMySQL==0.9.3
 pyOpenSSL==19.1.0
 pyparsing==2.4.6
-PyQt4==4.11.4
 python-dateutil==2.8.1
 python-for-android==2019.10.6
 pytoml==0.1.21
