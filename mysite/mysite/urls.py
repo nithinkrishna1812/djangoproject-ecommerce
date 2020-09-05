@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('/', home_page, name='home'),
+    path('', home_page, name='home'),
     path('cart/', cart_page, name='cart'),
     path('vegetable/', vegetable_page, name='vegetables'),
     path('fruits/', fruits_page, name='fruits'),
@@ -36,7 +36,6 @@ urlpatterns = [
     path('login/', login_page, name="login"),
     path('about/', about_page, name="about_page"),
     path('myorders/', my_orders_page, name="my_orders_page"),
-    path('404/', TemplateView.as_view(template_name='404.html')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
